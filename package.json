@@ -8,7 +8,7 @@
     "build:prod": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit --watch --silent"
   },
   "dependencies": {
     "core-js": "^3.6.4",
