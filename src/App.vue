@@ -1,20 +1,26 @@
 <template>
   <div id="app">
-   <Header />
+    <Header />
+    <main class="product-page">
+      <div class="container">
+      <List :items="products"/>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
-import eventBus from '@/eventBus'
+import api from '@/api'
+import List from '@/components/List'
+
 export default {
   name: 'App',
+  components: { List },
+  data: () => ({
+    products: []
+  }),
   beforeMount () {
-    eventBus.$on('showMiniBag', () => {
-      console.log('showMiniBag')
-    })
-    eventBus.$on('showMiniWhishlist', () => {
-      console.log('showMiniWhishlist')
-    })
+    api.getProducts().then(response => (this.products = response))
   }
 }
 </script>
