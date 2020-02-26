@@ -38,11 +38,13 @@
     background-color: #444A59;
 }
 
-.button--wishlist:hover {
+.button--wishlist:hover,
+.button--in-wishlist {
     border: 1px solid #444A59;
 }
 
-.button--wishlist:hover > .icon {
+.button--wishlist:hover > .icon,
+.button--in-wishlist > .icon {
     fill: #444A59;
 }
 

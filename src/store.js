@@ -4,7 +4,7 @@ Vue.use(Vuex)
 
 export const state = {
   cartItems: [],
-  whishlistItems: []
+  wishlistItems: []
 }
 
 export const mutations = {
@@ -12,14 +12,14 @@ export const mutations = {
     if (data.position === 'cartItems') {
       state.cartItems.push(data.item)
     } else {
-      state.whishlistItems.push(data.item)
+      state.wishlistItems.push(data.item)
     }
   },
   removeFrom: (state, data) => {
     if (data.position === 'cartItems') {
-      state.cartItems.splice(data.index)
+      state.cartItems.splice(data.index, 1)
     } else {
-      state.whishlistItems.splice(data.index)
+      state.wishlistItems.splice(data.index, 1)
     }
   }
 }

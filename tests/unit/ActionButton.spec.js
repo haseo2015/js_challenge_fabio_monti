@@ -1,14 +1,14 @@
 import { shallowMount } from '@vue/test-utils'
 import ActionButton from '@/components/ActionButton'
 
-describe('AddRemoveToBag Component test', () => {
+describe('ActionButton Component test', () => {
 
   const wrapper = shallowMount(ActionButton, {
     mocks: {
       $store: {
         state: { 
           cartItems: [],
-          whishlistItems: [] }
+          wishlistItems: [] }
       }
     },
     propsData: {
@@ -72,7 +72,7 @@ describe('AddRemoveToBag Component test', () => {
         }
       }
     });
-    expect(wrapper.find('.header-bag__price').text()).toBe("72 EUR")
+    expect(wrapper.find('.header-bag__price').text()).toBe("72.00 EUR")
   })
 
   it('should not show total if the withTotal is false', () => {

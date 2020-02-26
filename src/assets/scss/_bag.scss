@@ -2,21 +2,116 @@
    Bag
    ========================================================================== */
 
-.bag__item-counter {
-    width: 13px;
-    height: 13px;
-    margin-left: -1px;
+.bag {
+    &__mini-cart {
+        background-color: white;
+        box-shadow: 7px 0 10px #d9d9d9;
+        box-sizing: content-box;
+        max-width: 295px;
+        position: absolute;
+        top: 35px;
+        width: 295px;
+        z-index: 10;
 
-    display: flex;
-    align-self: flex-start;
-    justify-content: center;
-    align-items: center;
+        &.cartItems {
+            right: 45px;
+        }
 
-    font-family: 'Lato-Bold', sans-serif;
-    font-size: 8px;
-    text-align: center;
+        &.wishlistItems {
+            right: 0;
+        }
 
-    border-radius: 50%;
-    color: #ffffff;
-    background-color: #358ED7;
+        &__list {
+            position: relative;
+        }
+
+        &__pointer {
+            border-color: transparent transparent #ffffff transparent;
+            border-style: solid;
+            border-width: 0 10px 10px 10px;
+            height: 0;
+            position: absolute;
+            right: 10px;
+            top: -10px;
+            width: 0;
+        }
+
+        &__item {
+            border-bottom: 1px solid #dedede;
+            display: flex;
+            padding: 20px;
+            position: relative;
+
+            &__description {
+                margin: 5px 20px 5px 10px;
+                text-align: start;
+            }
+            
+            &__title {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;  
+                overflow: hidden;  
+                height:  30px;
+            }
+
+            &__qty-price {
+                margin: 10px 0;
+            }
+
+            &:hover {
+                &:not(.bag__mini-cart__subtotal) {
+                    background-color: #f4f4f4;
+                }
+            }
+        }
+
+        &__button {
+            background-color: #dedede;
+            color: #666;
+            position: absolute;
+            right: 20px;
+        }
+
+         // SUBTOTAL
+        &__subtotal {
+            display: flex;
+            padding: 20px;
+
+            &__description {
+                color: #dedede;
+                display: flex;
+                font-weight: bold;
+                flex-grow: 1;
+                margin: 0;
+            }
+
+            &__label {
+                flex-grow: 1;
+            }
+
+            &__value {
+                color: #ccc;
+            }
+        }
+    }
+
+    &__item-counter {
+        width: 13px;
+        height: 13px;
+        margin-left: -1px;
+    
+        display: flex;
+        align-self: flex-start;
+        justify-content: center;
+        align-items: center;
+    
+        font-family: 'Lato-Bold', sans-serif;
+        font-size: 8px;
+        text-align: center;
+    
+        border-radius: 50%;
+        color: #ffffff;
+        background-color: #358ED7;
+    }
 }
