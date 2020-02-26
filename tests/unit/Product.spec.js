@@ -5,46 +5,48 @@ describe('Product Component test', () => {
   const wrapper = shallowMount(Product, {
     mocks: {
       $store: {
-        state: { 
+        state: {
           cartItems: [],
-          wishlistItems: [] }
+          wishlistItems: []
+        }
       }
     },
     propsData: {
       attrs: {
-        cover_image_url: "https://images.musement.com/cover/0002/50/la-creazione-di-adamo-vaticani_header-149100.jpeg",
+        cover_image_url: 'https://images.musement.com/cover/0002/50/la-creazione-di-adamo-vaticani_header-149100.jpeg',
         retail_price: {
-          currency: "EUR",
+          currency: 'EUR',
           value: 28,
-          formatted_value: "€ 28.00",
-          formatted_iso_value: "28,00 €",
+          formatted_value: '€ 28.00',
+          formatted_iso_value: '28,00 €'
         }
       }
     }
-  });
-  
+  })
+
   it('shuold render the correct price', () => {
-    expect(wrapper.find('.product__price').text()).toBe("€ 28.00")
+    expect(wrapper.find('.product__price').text()).toBe('€ 28.00')
   })
 
   it('shuold render the net price', () => {
     const wrapper = shallowMount(Product, {
       mocks: {
         $store: {
-          state: { 
+          state: {
             cartItems: [],
-            wishlistItems: [] }
+            wishlistItems: []
+          }
         }
       },
       propsData: {
         attrs: {
           title: 'Prodotto di test',
-          cover_image_url: "https://images.musement.com/cover/0002/50/la-creazione-di-adamo-vaticani_header-149100.jpeg",
+          cover_image_url: 'https://images.musement.com/cover/0002/50/la-creazione-di-adamo-vaticani_header-149100.jpeg',
           retail_price: {
-            currency: "EUR",
+            currency: 'EUR',
             value: 28,
-            formatted_value: "€ 28.00",
-            formatted_iso_value: "28,00 €",
+            formatted_value: '€ 28.00',
+            formatted_iso_value: '28,00 €'
           },
           net_price: {
             currency: 'EUR',
@@ -55,11 +57,11 @@ describe('Product Component test', () => {
           discount: 10
         }
       }
-    });
+    })
     expect.assertions(3)
     expect(wrapper.find('.product__price--strike').exists()).toBe(true)
-    expect(wrapper.find('.product__price--strike').text()).toBe("€ 30.80")
-    expect(wrapper.find('.product__price--discounted').text()).toBe("€ 28.00")
+    expect(wrapper.find('.product__price--strike').text()).toBe('€ 30.80')
+    expect(wrapper.find('.product__price--discounted').text()).toBe('€ 28.00')
   })
 
   it('should add', async () => {
@@ -69,6 +71,4 @@ describe('Product Component test', () => {
     expect(spyMethod).toHaveBeenCalled()
     spyMethod.mockReset()
   })
-  
-
 })

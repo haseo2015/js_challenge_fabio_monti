@@ -1,35 +1,41 @@
 <template>
   <div :class="['bag__mini-cart', params.store]" v-if="isVisible">
-  <ul class="bag__mini-cart__list">
-    <span class="bag__mini-cart__pointer"></span>
-    <template v-if="items.length > 0">
-      <li class="bag__mini-cart__item"
-        v-for="(item, index) of items"
-        :key="index">
-          <button class="bag__mini-cart__button button button--round" @click="removeFrom(index)">&times;</button>
-          <img class="bag__mini-cart__thumbnail" :src="item.cover_image_url + '?q=60&fit=crop&w=70&h=75'"  alt="Product" itemprop="image">
-          <dl class="bag__mini-cart__item__description">
-            <dt class="bag__mini-cart__item__title">{{item.title}}</dt>
-            <dd class="bag__mini-cart__item__qty-price" v-if="params.store === 'cartItems'">1 X {{item.price.formatted_value}}</dd>
-          </dl>
+    <ul class="bag__mini-cart__list">
+      <span class="bag__mini-cart__pointer"></span>
+      <template v-if="items.length > 0">
+        <li class="bag__mini-cart__item"
+          v-for="(item, index) of items"
+          :key="index">
+            <button class="bag__mini-cart__button button button--round" @click="removeFrom(index)">&times;</button>
+            <img class="bag__mini-cart__thumbnail" :src="item.cover_image_url + '?q=60&fit=crop&w=70&h=75'"  alt="Product" itemprop="image">
+            <dl class="bag__mini-cart__item__description">
+              <dt class="bag__mini-cart__item__title">{{item.title}}</dt>
+              <dd class="bag__mini-cart__item__qty-price" v-if="params.store === 'cartItems'">1 X {{item.price.formatted_value}}</dd>
+            </dl>
+        </li>
+      <li class="bag__mini-cart__item bag__mini-cart__subtotal" v-if="params.store === 'cartItems'">
+        <dl class="bag__mini-cart__subtotal__description">
+          <dt class="bag__mini-cart__subtotal__label">CART SUBTOTAL</dt>
+          <dd class="bag__mini-cart__subtotal__value">{{subtotal.currency}}{{subtotal.value}}</dd>
+        </dl>
       </li>
-    <li class="bag__mini-cart__item bag__mini-cart__subtotal" v-if="params.store === 'cartItems'">
-      <dl class="bag__mini-cart__subtotal__description">
-        <dt class="bag__mini-cart__subtotal__label">CART SUBTOTAL</dt>
-        <dd class="bag__mini-cart__subtotal__value">{{subtotal.currency}}{{subtotal.value}}</dd>
-      </dl>
-    </li>
-    </template>
-    <template v-else>
-      <li class="bag__mini-cart__item bag__mini-cart__item--empty">
-        {{params.store === 'cartItems' ?'Carrello vuoto ' : 'Wishlist vuota'}}
-      </li>
-    </template>
-  </ul>
+      </template>
+      <template v-else>
+        <li class="bag__mini-cart__item bag__mini-cart__item--empty">
+          {{params.store === 'cartItems' ?'Carrello vuoto ' : 'Wishlist vuota'}}
+        </li>
+      </template>
+    </ul>
   </div>
 </template>
 
 <script>
+/**
+ * @component MiniBag
+ * @computed subtotal - return the sum of the prices in the items array, plus the current currency passed into the price object @returns object
+ * @method removeFrom (@param indexItem) - call the action REMOVE_FROM passing the index and the position (which array of items is)
+ * @beforeMount listen to showMiniBag event to get params and items to show
+ */
 import eventBus from '@/eventBus'
 export default {
   name: 'MiniBag',

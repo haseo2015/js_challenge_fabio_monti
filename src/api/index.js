@@ -12,10 +12,14 @@ const callAPI = (args) => {
   })
 }
 
-const getProducts = () => {
+const getProducts = (query) => {
+  const endpoint = {
+    ...endpoints.getProducts,
+    url: endpoints.getProducts.url += (query !== undefined) ? query : ''
+  }
+  // console.log(endpoint)
   return new Promise((resolve, reject) => {
-    callAPI(endpoints.getProducts).then(response => {
-      console.log('getProduct API response', response)
+    callAPI(endpoint).then(response => {
       resolve(response)
     })
       .catch(e => reject(e))

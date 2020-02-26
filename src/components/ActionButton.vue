@@ -9,11 +9,30 @@
 </template>
 
 <script>
+/**
+ * @component ActionButton
+ * @prop params
+ *  @accept {
+        name: '',
+        store: 'cartItems', //wishlistItems
+        withTotal: true, // false
+        additionalClasses: string,
+        icon: svg string,
+        callback: {
+          name: string,
+          args: object
+        }
+      }
+ * @computed total - return the sum of the prices in the items array, plus the current currency passed into the price object @returns object
+ * @method emitEvent (@param cb) - @click it emits an event based on callback passed intially
+ * @test ActionButton.spec.js
+ */
 import eventBus from '@/eventBus'
 export default {
   name: 'ActionButton',
   props: {
     params: {
+      type: Object,
       required: true
     }
   },

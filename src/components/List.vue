@@ -7,6 +7,10 @@
 </template>
 
 <script>
+/**
+ * @component List
+ * @prop items - the list of produtcs
+ */
 export default {
   name: 'ItemList',
   props: ['items']

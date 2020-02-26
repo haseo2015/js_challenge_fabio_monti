@@ -2,15 +2,20 @@
   <header class="header container">
     <h1 class="page-title">BRAND</h1>
     <aside class="header-bag">
-        <ActionButton :params="buttons[0]" />
-        <ActionButton :params="buttons[1]" />
+        <ActionButton
+          v-for="button of buttons"
+          :key="button.name"
+          :params="button" />
         <MiniBag />
     </aside>
   </header>
 </template>
 
 <script>
-
+/**
+ * @component Header
+ * @data buttons configurations
+ */
 export default {
   name: 'Header',
   data: () => ({
@@ -19,7 +24,7 @@ export default {
         name: 'addToCart',
         store: 'cartItems',
         withTotal: true,
-        additionalClasses: ['header-bag__wishlist-count'],
+        additionalClasses: ['header-bag__count'],
         icon: '<svg class="icon" width="17px" height="18px" viewBox="36 8 17 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" v-if="params.icon"><title>Bag Icon</title><path d="M52.997701,12.8571429 L49.3553365,12.8571429 L49.3553365,8 L39.6423645,8 L39.6423645,12.8571429 L36,12.8571429 L36,25 L52.997701,25 L52.997701,12.8571429 Z M42.0706075,10.4285714 L46.9270935,10.4285714 L46.9270935,12.8571429 L42.0706075,12.8571429 L42.0706075,10.4285714 Z" id="Bag-Icon" stroke="none" fill-rule="evenodd"></path></svg>',
         callback: {
           name: 'showMiniBag',

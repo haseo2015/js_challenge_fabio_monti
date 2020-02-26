@@ -1,7 +1,7 @@
 <template>
   <article class="product" itemscope="" itemtype="http://schema.org/Product">
     <figure class="product__image-wrapper">
-        <img class="product__image" :src="attrs.cover_image_url" alt="Product" itemprop="image">
+        <img class="product__image" :src="croppedImage" alt="Product" itemprop="image">
         <button :class="['product__wishlist-button', 'button button--round', 'button--wishlist', {'button--in-wishlist': inWL}]" @click="addTo('whishlistItems')">
             <svg class="icon" width="20px" height="20px" viewBox="0 6 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Wishlist Icon</title>
@@ -28,7 +28,15 @@
 </template>
 
 <script>
-// import EventBus from '@/eventBus'
+/**
+ * @component Product
+ * @computed productPrice - return net price or retail_price based on discount attribute @returns object
+ * @computed inCart - define the button--in-cart class based on if the title is in the cartItems elements @returns boolean
+ * @computed inWL - define the button--in-wishlist class based on if the title is in the wishlistItems elements @returns boolean
+ * @computed croppedImage -  returns the image cropped based on params @returns string
+ * @method addTo (@param where) - set a miniProduct object with title, cover and price, then dispatch it to the right store by the where param
+ * @test Product.spec.js
+ */
 export default {
   name: 'Product',
   props: ['attrs'],
@@ -50,6 +58,9 @@ export default {
       return (this.$store.state.wishlistItems.length !== undefined && this.$store.state.wishlistItems.length > 0)
         ? this.$store.state.wishlistItems.find(item => item.title === this.attrs.title)
         : false
+    },
+    croppedImage (h) {
+      return this.attrs.cover_image_url + '?q=60&fit=crop&h=200&w=420'
     }
   },
   methods: {

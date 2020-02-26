@@ -1,6 +1,6 @@
 export default {
   getProducts: {
-    url: 'https://api.musement.com/api/v3/venues/164/activities?limit=6&offset=0',
+    url: 'https://api.musement.com/api/v3/venues/164/activities',
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',

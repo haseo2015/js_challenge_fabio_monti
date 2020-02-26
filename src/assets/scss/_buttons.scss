@@ -2,7 +2,7 @@
    Buttons
    ========================================================================== */
 
-   .icon {
+.icon {
     width: 20px;
     height: 20px;
     fill: #d9d9d9;
@@ -16,39 +16,38 @@
     
     cursor: pointer;
     transition: .3s border, .3s color, .3s background-color;
-}
 
-.button--round {
-    display: block;
-    border-radius: 50%;
-}
+    &--round {
+        display: block;
+        border-radius: 50%;
+    }
 
-.button--primary {
-    padding: 13px;
+    &--primary {
+        padding: 13px;
+    
+        font-family: 'Lato-Bold', sans-serif;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1.39px;
 
-    font-family: 'Lato-Bold', sans-serif;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1.39px;
-}
+        &:hover {
+            border: 1px solid #444A59;
+            color: #ffffff;
+            background-color: #444A59;
+        }
+    }
 
-.button--primary:hover {
-    border: 1px solid #444A59;
-    color: #ffffff;
-    background-color: #444A59;
-}
+    &--wishlist:hover,
+    &--in-wishlist {
+        border: 1px solid #444A59;
 
-.button--wishlist:hover,
-.button--in-wishlist {
-    border: 1px solid #444A59;
-}
+        > .icon {
+            fill: #444A59;
+        }
+    }
 
-.button--wishlist:hover > .icon,
-.button--in-wishlist > .icon {
-    fill: #444A59;
-}
-
-.button--in-cart {
-    pointer-events: none;
-    background-color: #d9d9d9;
+    &--in-cart {
+        pointer-events: none;
+        background-color: #d9d9d9;
+    }
 }
